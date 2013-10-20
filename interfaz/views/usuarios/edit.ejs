@@ -1,0 +1,15 @@
+<% formularios.errores(flash, error, {
+    email: {
+      label: 'Correo electrónico'
+    },
+    username: {
+      label: 'Nombre de usuario'
+    },
+  }) %>
+<% layout('../layout') -%>
+
+<%-partial('_form', {
+  usuario_actual: usuario_actual,
+  usuario: usuario,
+  error: error
+  }) %>

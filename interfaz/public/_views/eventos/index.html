@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-xs-12 paginacion">
+  </div>
+</div>
+<div class="row">
+  <form id='filtrar-eventos-form' action='/eventos' method='get' data-method='get'>
+    <div class="form-group col-md-4">
+      <label>Criterio</label>
+      <input id="filtrar-eventos" class="form-control" name="q" type="text" placeholder="criterio de búsqueda" />
+    </div>
+    <div class="form-group col-md-3">
+      <label>Desde</label>
+      <input id="filtrar-eventos-desde" class="form-control fecha" name="desde" type="text" placeholder="Desde" />
+    </div>
+    <div class="form-group col-md-3">
+      <label>Hasta</label>
+      <input id="filtrar-eventos-hasta" class="form-control fecha" name="hasta" type="text" placeholder="Hasta" />
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-info" type="submit" data-formulario="filtrar-eventos-form"><i class="icon-search"></i> Filtrar</button>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <a id="toggle-filtro">Mostrar filtro</a>
+</div>
+<div id="lista-eventos" class="lista-elementos row"></div>
+
+<div class="col-lg-offset-6 col-md-offset-6 col-lg-6 col-md-6 col-xs-12 paginacion"></div>
+<script>
+  // cargar asincronamente el script de eventos, gracias Facebook
+  (function(d, s, id){
+     var js;
+     if ($('#' + id).length > 0) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "/js/models/eventos.js";
+     $('body').append(js);
+  }(document, 'script', 'eventos-backbone'));
+  myApplication.formularios.preparar();
+  $("#filtrar-eventos-desde").datepicker({dateFormat:"yy-mm-dd", maxDate: 0});
+  $("#filtrar-eventos-hasta").datepicker({dateFormat:"yy-mm-dd", maxDate: 0});
+  $("#toggle-filtro").click(function(){
+    if($(this).text()=="Mostrar filtro"){
+      $(filtro).show();
+      $(this).text("Ocultar filtro");
+    } else {
+      $(filtro).hide();
+      $(this).text("Mostrar filtro");
+    }
+  });
+</script>

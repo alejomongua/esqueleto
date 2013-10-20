@@ -1,0 +1,66 @@
+<% myApplication.formularios.errores(error, {
+    email: {
+      label: 'Correo electrónico'
+    },
+  }) %>
+<div class="row">
+  <div class="col-lg-offset-2 col-md-offset-1 col-xs-12 col-md-10 col-sm-10 col-lg-8">
+    <form id="editar_usuario_form" accept-charset="UTF-8" action="/usuarios/<%- usuario.id %>" method="post" data-method="PUT">
+      <input type="hidden" name="_method" value="PUT">
+      <%= myApplication.formularios.campo('usuario', 'nombre', 'texto', usuario, error, {
+          data: {
+            validaciones: 'noVacio'
+          }
+        }) %>
+      <%= myApplication.formularios.campo('usuario', 'username', 'texto', usuario, error, {
+          label: 'Nombre de usuario',
+          data: {
+            validaciones: 'noVacio'
+          }
+        }) %>
+      <%= myApplication.formularios.campo('usuario', 'email', 'texto', usuario, error, {
+          data: {
+            validaciones: 'noVacio email'
+          }
+        }) %>
+      <% if (myApplication.usuario_actual.id != usuario.id){ %>
+        <%= myApplication.formularios.campo('usuario', 'password', 'password', usuario, error, {
+            label: 'Contraseña',
+            data: {
+              validaciones:'noVacio password'
+            }
+          }) %>
+        <%= myApplication.formularios.campo('usuario', 'password_confirm', 'password', usuario, error, {
+            label: 'Confirmar contraseña',
+            data: {
+              validaciones:'noVacio password_confirm'
+            }
+          }) %>
+      <% } %>
+      <%= myApplication.formularios.campo('usuario', 'genero', 'seleccion', usuario, error, {
+          label: 'Género',
+          input_class: 'chosen-select',
+          opciones: {
+            Hombre: 'Hombre',
+            Mujer: 'Mujer'
+          },
+          data: {
+            placeholder: 'Seleccione el género del nuevo usuario'
+          },
+          includeBlank: true
+        }) %>
+      <div class="row">
+        <div class="col-lg-4 col-md-5 col-sm-5 col-xs-6 text-center">
+          <button class="btn btn-large btn-success btn-block" type="submit" data-remote="true" data-formulario="editar_usuario_form"><i class="icon-check-sign"></i> Guardar</button>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-5 col-xs-6 text-center">
+          <a class="btn btn-large btn-danger btn-block" href="/usuarios/<%= usuario.id %>" data-remote="true">
+          <i class="icon-remove-sign"></i> Cancelar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  myApplication.formularios.preparar();
+</script>

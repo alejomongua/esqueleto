@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <section>
+      <div class="img-thumbnail">
+        <img src="/usuarios/<%- usuario.id %>/gravatar?size=200" />
+      </div>
+    </section>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <section>
+      <h2>Información básica</h2>
+      <div>
+        Nombre: <%- usuario.nombre %>
+      </div>
+      <div>
+        Nombre de usuario: <%- usuario.username %>
+      </div>
+      <div>
+        Correo electrónico: <%- usuario.email %>
+      </div>
+      <% if (usuario.genero) { %>
+      <div>
+        Género: <%- usuario.genero %>
+      </div>
+      <% } %>
+    </section>
+  </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <section>
+      <div>
+        <h2>Otra info</h2>
+      </div>
+      <div>
+        Miembro desde: <%- moment().toString(usuario.createdAt) %>
+      </div>
+      <% if (usuario.lastLogin) { %>
+        <div>
+          Último inicio de sesión <%- moment(usuario.lastLogin).fromNow() %>
+        </div>
+      <% } %>
+      <% if (usuario.id == myApplication.usuario_actual.id) { %>
+        <div>
+          <a href="#" data-html="<b>Api Key:</b><br /><pre class='api-key'><%- myApplication.usuario_actual.remember_token %></pre>" class="colorbox">Ver Api Key</a>
+        </div>
+      <% } %> 
+    </section>
+  </div>
+</div>

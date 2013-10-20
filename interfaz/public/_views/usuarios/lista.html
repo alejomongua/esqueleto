@@ -1,0 +1,24 @@
+<% for(var __i = 0; __i < usuarios.length; __i++) { %>
+  <div id="usuario-<%- usuarios[__i].id %>">
+    <div class="item-lista-usuario row">
+      <div class="col-lg-9 col-md-12">
+        <span class="item-lista">
+          <a href="/usuarios/<%- usuarios[__i].id %>"  class="usuarios-detalles row" data-id="<%- usuarios[__i].id %>">
+            <%- usuarios[__i].username + '(' + usuarios[__i].nombre + ')' %>
+          </a>
+        </span>
+      </div>
+      <div class="acciones-usuario acciones col-lg-3 col-md-12">
+        <a href="<%- '/usuarios/' + usuarios[__i].id + '/edit' %>" class="btn btn-primary btn-xs" data-remote="true">
+          <i class="icon-edit"></i> Editar
+        </a>
+        <% if (usuarios[__i].id != myApplication.usuario_actual.id) { %>
+          <a href=/usuarios/"<%- usuarios[__i].id %>?_method=DELETE" class="btn btn-danger btn-xs usuarios-borrar eliminar-elemento" data-id="<%- usuarios[__i].id %>">
+            <i class="icon-trash"></i> Eliminar
+          </a>
+        <% } %>
+      </div>
+    </div>
+    <hr>
+  </div>
+<% } %>

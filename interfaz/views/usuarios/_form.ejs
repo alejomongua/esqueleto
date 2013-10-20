@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-offset-2 col-md-offset-1 col-xs-12 col-md-10 col-sm-10 col-lg-8">
+    <form id="usuarios_form" accept-charset="UTF-8" action="/usuarios<%= usuario.id ? '/' + usuario.id : '' %>" method="post" <%- usuario.id ? 'data-method="PUT"' : '' %>>
+        <% if (usuario.id) { %>
+          <input type="hidden" name="_method" value="PUT">
+        <% } %>
+        <%- formularios.campo('usuario', 'nombre', 'texto', usuario, error, {
+            data: {
+              validaciones: 'noVacio'
+            }
+          }) %>
+        <%- formularios.campo('usuario', 'username', 'texto', usuario, error, {
+          label: 'Nombre de usuario',
+            data: {
+              validaciones: 'noVacio'
+            }
+          }) %>
+        <%- formularios.campo('usuario', 'email', 'texto', usuario, error, {
+            label: 'Correo electrónico',
+            data: {
+              validaciones: 'noVacio email'
+            }
+          }) %>
+        <% if (usuario_actual.id != usuario.id){ %>
+          <%- formularios.campo('usuario', 'password', 'password', usuario, error, {
+              label: 'Contraseña',
+              data: {
+                validaciones:'noVacio password'
+              }
+            }) %>
+          <%- formularios.campo('usuario', 'password_confirm', 'password', usuario, error, {
+              label: 'Confirmar contraseña',
+              data: {
+                validaciones:'noVacio password_confirm'
+              }
+            }) %>
+        <% } %>
+        <%- formularios.campo('usuario', 'genero', 'seleccion', usuario, error, {
+            label: 'Género',
+            input_class: 'chosen-select',
+            opciones: {
+              Hombre: 'Hombre',
+              Mujer: 'Mujer'
+            },
+            data: {
+              placeholder: 'Seleccione el género del nuevo usuario'
+            },
+            includeBlank: true
+          }) %>
+        <div class="row">
+          <div class="col-lg-4 col-md-5 col-sm-5 col-xs-6 text-center">
+            <button class="btn btn-large btn-success btn-block" type="submit" data-remote="true" data-formulario="usuarios_form"><i class="icon-check-sign"></i> Guardar</button>
+          </div>
+          <div class="col-lg-4 col-md-5 col-sm-5 col-xs-6 text-center">
+            <a class="btn btn-large btn-danger btn-block" href="/" data-remote="true">
+              <i class="icon-remove-sign"></i> Cancelar
+            </a>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>

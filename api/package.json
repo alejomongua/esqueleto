@@ -1,0 +1,19 @@
+{
+  "name": "application-name-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.3.4",
+    "nodemailer":"*",
+    "sequelize":"https://dl.dropboxusercontent.com/u/18947902/sequelize.tar.gz",
+    "async": "*",
+    "underscore": "*",
+    "pg": "~0.10.2",
+    "bcrypt":"*",
+    "crypto":"*",
+    "moment":"*"
+  }
+}

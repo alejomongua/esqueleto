@@ -1,0 +1,91 @@
+h1, h2, h3, h4, h5, h6, a.navbar-brand{
+  font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+body{
+    padding-top: 90px;
+    background-image: url('/images/bg4.jpg');
+}
+@media screen and (min-width: 782px){
+  body{
+    padding-top: 70px;
+  }
+}
+footer{
+  color:#888;
+  text-align:center;
+  font-size:0.9em;
+}
+div.lista-elementos span.item-lista a{
+  font-size:1.2em;
+  font-weight: bolder;
+}
+div.lista-elementos .acciones{
+  text-align: right;
+}
+div.boton-agregar {
+  margin:10px 0 20px;
+}
+.paginacion{
+  text-align: right;
+  line-height: 2em;
+  border-radius: 1em;
+  padding:10px 16px;
+}
+.btn-xs{  
+  box-shadow: 3px 3px 2px #888;
+}
+.form-control{
+  height:inherit;
+}
+section.sec-thumbnail{
+  text-align: center;
+}
+div.img-thumbnail{
+  margin-bottom:1em;
+}
+div.navbar.navbar-fixed-top{
+  background-image: url('/images/bg1.png');
+}
+.facebook-login{
+  background-color: #3e5a98;
+  color: white;
+}
+.alert-error, noscript {
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #b94a48;
+  background-color: #f2dede;
+}
+hr{
+  border-top-color:#ccc;
+}
+#filtro{
+  display:none;
+}
+table.lista-eventos td, table.lista-eventos th{
+  border:1px solid black;
+  text-align: center
+}
+table.lista-eventos td.usuario{
+  width:10%;
+}
+table.lista-eventos td.fecha{
+  width:20%;
+}
+table.lista-eventos td.contenido{
+  width:70%;
+  word-break:break-all;
+}
+div.social{
+  text-align:center;
+}
+img{
+  max-width:100%;
+}
+#login_form{
+  min-width: 240px;
+  padding: 5px;
+}
+.lista-elementos{
+  margin-top: 3em;
+}

@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "dbuser",
+    "password": "foobar",
+    "database": "database_dev",
+    "dialect":"postgres",
+    "protocol":"postgres",
+    "host": "127.0.0.1"
+  },
+  "test": {
+    "username": "dbuser",
+    "password": "foobar",
+    "database": "database_test",
+    "dialect":"postgres",
+    "protocol":"postgres",    
+    "host": "127.0.0.1"
+  },
+  "production": {
+    "username": "dbuser",
+    "password": "foobar",
+    "database": "database_pro",
+    "dialect":"postgres",
+    "protocol":"postgres",
+    "host": "127.0.0.1"
+  }
+}

@@ -1,0 +1,96 @@
+<% if (myApplication.usuario_actual) { %>
+  <li><a href="/ayuda" data-remote="true"><i class="icon-question-sign"></i> Ayuda</a></li>
+  <li class="dropdown">
+    <a id="menu-usuario" href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <%- myApplication.usuario_actual.username %>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="/dashboard" data-remote="true"><b>Dashboard</b></a></li>
+      <li class="divider"></li>
+      <li><a href="/usuarios/<%- myApplication.usuario_actual.id %>" data-remote="true">Ver mi perfil</a></li>
+      <li><a href="/usuarios/<%- myApplication.usuario_actual.id %>/edit" data-remote="true">Editar mi perfil</a></li>
+      <li><a href="/usuarios/<%- myApplication.usuario_actual.id %>/modificar_password" data-remote="true">Modificar mi contraseña</a></li>
+      <% if (myApplication.usuario_actual.superadministrador) { %>
+        <li class="divider"></li>
+        <li><a href="/usuarios?vista=true" data-remote="true">Administrar usuarios</a></li>
+        <li><a href="/eventos?vista=true" data-remote="true">Ver eventos del sistema</a></li>
+      <% } %>
+      <li class="divider"></li>
+      <li><a data-accion="cerrar-sesion" href="/sesiones?_method=DELETE" data-remote="true" data-method="DELETE">Cerrar sesión</a></li> 
+    </ul>
+  </li>
+<% } else { %>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Identifícate
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu" id="swatch-menu">
+      <div class="col-xs-12">
+        <li class="boton">
+          <a href='#' class="facebook-login btn btn-sm btn-block" data-accion="ingresar"><i class="icon-facebook-sign"></i> Ingresar con facebook </a>
+        </li>
+        <h4>Ingresa a tu cuenta</h4>
+        <form id="login_form" accept-charset="UTF-8" action="/sesiones" method="post">
+          <li>
+            <div class="form-group">
+              <label class="sr-only">Correo o nombre de usuario</label>
+              <input id="sesion_email" class="form-control changed" name="email" placeholder="Correo o nombre de usuario" type="text">
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <label class="sr-only">Correo o nombre de usuario</label>
+              <input id="sesion_password" class="form-control changed" name="password" placeholder="Contraseña" type="password">
+            </div>
+          </li>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <h4><a href="/olvide_password" data-remote="true">¿Olvidó su contraseña?</a></h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <button class="btn btn-large btn-info btn-block" type="submit"  data-remote="true" data-formulario="login_form">Ingresar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a id="menu-usuario" href="#" class="dropdown-toggle" data-toggle="dropdown">
+      Regístrate
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <div class="col-xs-12">
+        <li class="boton">
+          <a href='#' class="facebook-login btn btn-sm btn-block" data-accion="registrar"><i class="icon-facebook-sign"></i> Registrar con facebook </a>
+        </li>
+        <h4>Ingresa estos datos</h4>
+        <form accept-charset="UTF-8" action="/usuarios" method="post">
+          <li>
+            <input id="usuario_nombre" name="nombre" placeholder="Nombre" type="text">
+          </li>
+          <li>
+            <input id="usuario_email" name="email" placeholder="Correo electrónico" type="text">
+          </li>
+          <li>
+            <input id="usuario_password" name="password" placeholder="Contraseña" type="password">
+          </li>
+          <li>
+            <input id="usuario_password_confirm" name="password_confirm" placeholder="Confirma contraseña" type="password">
+          </li>
+          <li>
+            Al registrarte en esta aplicación estás aceptando los <a href="/terminos_y_condiciones" data-remote="true">terminos y condiciones</a>
+          </li>
+          <li class="boton">
+            <button class="btn btn-xs btn-info btn-block">Registrar</button>
+          </li>
+        </form>
+      </div>
+    </ul>
+  </li>
+<% } %>

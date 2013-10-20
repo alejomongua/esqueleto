@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Application<% if (typeof titulo === 'string') { %><%= ' | ' + titulo %><% } %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/chosen.css">
+    <link rel="stylesheet" href="/css/colorbox.css">
+    <link rel="stylesheet" href="/css/jquery-datepicker.min.css">
+    <link rel="stylesheet" href="/css/rickshaw.css">
+    <link rel="stylesheet" href="/css/misestilos.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="navbar navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">My Application <em><small>by Ekii SAS</small></em></a>
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse">
+              <ul id="menu-usuario" class="nav navbar-nav navbar-right">
+                <!--[if lte IE 9]>
+                <div class="alert alert-error">
+                  Su navegador no está soportado, por favor descargue la última versión de 
+                  <a href="https://www.google.com/intl/es-419/chrome/browser/">Google Chrome</a> o  
+                  <a href="https://www.google.com/intl/es-419/chrome/browser/">Firefox</a> 
+                  para poder acceder a esta aplicación.
+                </div>
+                <![endif]-->
+                <!--[if !IE]><!-->
+                <% if (usuario_actual) { %>
+                  <li><a href="/ayuda" data-remote="true"><i class="icon-question-sign"></i> Ayuda</a></li>
+                  <li class="dropdown">
+                    <a id="menu-usuario" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <%= usuario_actual.username %>
+                      <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/dashboard" data-remote="true"><b>Dashboard</b></a></li>
+                      <li class="divider"></li>
+                      <li><a href="/usuarios/<%= usuario_actual.id %>" data-remote="true">Ver mi perfil</a></li>
+                      <li><a href="/usuarios/<%= usuario_actual.id %>/edit" data-remote="true">Editar mi perfil</a></li>
+                      <li><a href="/usuarios/<%= usuario_actual.id %>/modificar_password" data-remote="true">Modificar mi contraseña</a></li>
+                      <% if (usuario_actual.superadministrador) { %>
+                        <li class="divider"></li>
+                        <li><a href="/usuarios?vista=true" data-remote="true">Administrar usuarios</a></li>
+                        <li><a href="/eventos?vista=true" data-remote="true">Ver eventos del sistema</a></li>
+                      <% } %>
+                      <li class="divider"></li>
+                      <li><a data-accion="cerrar-sesion" href="/sesiones?_method=DELETE" data-remote="true" data-method="DELETE">Cerrar sesión</a></li> 
+                    </ul>
+                  </li>
+                <% } else { %>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Identifícate
+                      <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="swatch-menu">
+                      <form id="login_form" accept-charset="UTF-8" action="/sesiones" method="post">
+                        <li>
+                          <div class="form-group">
+                            <label class="sr-only">Correo o nombre de usuario</label>
+                            <input id="sesion_email" class="form-control changed" name="email" placeholder="Correo o nombre de usuario" type="text">
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group">
+                            <label class="sr-only">Correo o nombre de usuario</label>
+                            <input id="sesion_password" class="form-control changed" name="password" placeholder="Contraseña" type="password">
+                          </div>
+                        </li>
+                        <div class="row">
+                          <div class="col-xs-12 text-center">
+                            <h4><a href="/olvide_password" data-remote="true">¿Olvidó su contraseña?</a></h4>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12 text-center">
+                            <button class="btn btn-large btn-info btn-block" type="submit"  data-remote="true" data-formulario="login_form">Ingresar</button>
+                          </div>
+                        </div>
+                      </form>
+                    </ul>
+                  </li>
+                    <li class="dropdown">
+                      <a id="menu-usuario" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Regístrate
+                        <b class="caret"></b>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <div class="col-xs-12">
+                          <li class="boton">
+                            <a href='#' class="facebook-login btn btn-sm btn-block" data-accion="registrar"><i class="icon-facebook-sign"></i> Registrar con facebook </a>
+                          </li>
+                          <h4>Ingresa estos datos</h4>
+                          <form accept-charset="UTF-8" action="/usuarios" method="post">
+                            <li>
+                              <input id="usuario_nombre" name="nombre" placeholder="Nombre" type="text">
+                            </li>
+                            <li>
+                              <input id="usuario_email" name="email" placeholder="Correo electrónico" type="text">
+                            </li>
+                            <li>
+                              <input id="usuario_password" name="password" placeholder="Contraseña" type="password">
+                            </li>
+                            <li>
+                              <input id="usuario_password_confirm" name="password_confirm" placeholder="Confirma contraseña" type="password">
+                            </li>
+                            <li>
+                              Al registrarte en esta aplicación estás aceptando los <a href="/terminos_y_condiciones" data-remote="true">terminos y condiciones</a>
+                            </li>
+                            <li class="boton">
+                              <button class="btn btn-xs btn-info btn-block">Registrar</button>
+                            </li>
+                          </form>
+                        </div>
+                      </ul>
+                    </li>
+                <% } %><!-->
+                <![endif]-->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="main">
+        <div id="flash">
+          <% if (typeof flash !== 'undefined') { %>
+            <% for (var key in flash) { %>
+              <div class="alert alert-<%= key %>"><%- flash[key] %></div>
+              <% delete flash[key] %>
+            <% } %>
+          <% } %>
+          <noscript>Necesita activar Javascript para acceder a esta aplicación</noscript>
+        </div>
+          <h1 id="main-title" class="titulo">
+            <% if(typeof titulo === 'string') { %>
+              <%= titulo %>
+            <% } %>
+          </h1>
+        <div id="main-content">
+          <%- body -%>
+        </div>
+      </section>
+      <hr>
+      <footer>
+        Programado por Alejandro Mongua - <a href="mailto:alejandro.mongua@gmail.com"> alejandro.mongua@gmail.com </a>
+      </footer>
+    </div>
+    <% if (process.env.NODE_ENV !== 'production'){ %>
+      <script src="/js/jquery.js"></script>
+      <script src="/js/bootstrap.js"></script>
+      <script src="/js/underscore.js"></script>
+      <script src="/js/backbone.js"></script>
+      <script src="/js/jquery.cookie.js"></script>
+      <script src="/js/jquery.colorbox.js"></script>
+      <script src="/js/chosen.jquery.js"></script>
+      <script src="/js/moment.js"></script>
+      <script src="/js/moment.es.js"></script>    
+      <script src="/js/jquery-datepicker.js"></script>
+      <script src="/js/misScripts.js"></script>
+    <% } else { %>
+      <script src="/js/app.min.js"></script>
+    <% } %>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <%- blocks.beforeBodyEnds %>
+  </body>
+</html>

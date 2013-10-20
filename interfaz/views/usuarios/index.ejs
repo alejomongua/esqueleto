@@ -1,0 +1,25 @@
+<% layout('../layout') -%>
+
+<div class="row">
+  <div class="col-md-6 col-xs-12 boton-agregar">
+    <a class="btn btn-success btn-lg btn-block" href="/usuarios/new" data-remote="true">
+      <i class="icon-plus-sign"></i> Agregar nuevo usuario
+    </a>
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12 paginacion">
+  </div>
+</div>
+<div class="row">
+  <form id='filtrar-usuarios-form' class="form-inline" action='/usuarios' method='get' data-method='get'>
+    <div class="form-group">
+      <label class="sr-only">Criterio</label>
+      <input id="filtrar-usuarios" class="form-control" name="q" type="text" placeholder="criterio de búsqueda" />
+    </div>
+    <button class="btn btn-info" type="submit" data-formulario="filtrar-usuarios-form"><i class="icon-search"></i> Buscar</button>
+  </form>
+</div>
+
+<div id="lista-usuarios" class="lista-elementos row"></div>
+
+<div class="col-lg-offset-6 col-md-offset-6 col-lg-6 col-md-6 col-xs-12 paginacion"></div>
+<% block('beforeBodyEnds', '<script id="usuarios-backbone" src="/js/models/usuarios.js"></script>') %>

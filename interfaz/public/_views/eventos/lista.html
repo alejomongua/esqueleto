@@ -1,0 +1,25 @@
+<% if (eventos.length > 0) { %>
+  <table class="lista-eventos">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Contenido</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var __i = 0; __i < eventos.length; __i++) { %>
+        <tr>
+          <td class="usuario model-to-string" data-ruta="/usuarios/<%- eventos[__i].UsuarioId %>" data-campo="nombre" data-id="<%- eventos[__i].UsuarioId %>" data-modelo="usuario"></td>
+          <td class="contenido"><%- eventos[__i].contenido %></td>
+          <td class="fecha"><%- moment(eventos[__i].createdAt).format('YYYY-MM-DD, h:mm:ss a') %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No se encontraron eventos que cumplan con el criterio</p>
+<% } %>
+<script>
+  myApplication.modelToString();
+</script>
